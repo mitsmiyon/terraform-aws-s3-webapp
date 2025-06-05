@@ -47,6 +47,11 @@ resource "aws_s3_bucket_acl" "bucket" {
 
 resource "aws_s3_bucket_policy" "policy" {
   bucket = aws_s3_bucket.bucket.id
+
+  depends_on = [
+    aws_s3_bucket_acl.bucket
+  ]
+
   policy = <<EOF
 {
     "Version": "2012-10-17",
